@@ -9,13 +9,13 @@ import javax.validation.constraints.Size;
 @Data @NoArgsConstructor @AllArgsConstructor
 public class AdminDto {
     @Size(min = 3, max = 10, message = "Invalid first name (3-10  character)")
-    private String firstName;
+    public String firstName;
     @Size(min = 3, max = 10, message = "Invalid last name (3-10  character)")
-    private String lastName;
+    public String lastName;
 
-    private String username;
+    public String username;
     @Size(min = 5, max = 15, message = "Invalid password (5-15  character)")
-    private String password;
+    public String password;
 
-    private String repeatPassword;
+    public String repeatPassword;
 }
