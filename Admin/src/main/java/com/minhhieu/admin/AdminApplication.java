@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories(value = "com.minhhieu.library.repository")
 @EntityScan(value = "com.minhhieu.library.model")
 public class AdminApplication {
-
+    
     public static void main(String[] args) {
         SpringApplication.run(AdminApplication.class, args);
     }
