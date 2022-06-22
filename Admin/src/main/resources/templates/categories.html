@@ -69,7 +69,7 @@
 
     <!-- Add Category Modal-->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <form th:action="@{/add-category}" th:object="${categoryNew}">
+        <form th:action="@{/add-category}" method="post" th:object="${categoryNew}">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
