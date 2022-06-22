@@ -14,8 +14,8 @@
     <name>SpringEcommerce</name>
     <description>SpringEcommerce</description>
     <modules>
-        <module>Library</module>
         <module>Admin</module>
+        <module>Library</module>
     </modules>
     <properties>
         <java.version>17</java.version>

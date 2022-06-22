@@ -5,8 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Collection;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor @AllArgsConstructor
 @Entity
 @Table(name = "admins")
