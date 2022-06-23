@@ -4,6 +4,9 @@ import com.minhhieu.library.dto.AdminDto;
 import com.minhhieu.library.model.Admin;
 import com.minhhieu.library.service.impl.AdminServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,6 +45,10 @@ public class LoginController {
     @RequestMapping("/index")
     public String home(Model model){
         model.addAttribute("title", "Home Page");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication == null || authentication instanceof AnonymousAuthenticationToken){
+            return "redirect:/login";
+        }
         return "index";
     }
     @GetMapping("/forgot-password")
