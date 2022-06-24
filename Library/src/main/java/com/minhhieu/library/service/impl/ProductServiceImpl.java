@@ -4,16 +4,22 @@ import com.minhhieu.library.dto.ProductDto;
 import com.minhhieu.library.model.Product;
 import com.minhhieu.library.repository.ProductRepository;
 import com.minhhieu.library.service.ProductService;
+import com.minhhieu.library.utils.ImageUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @Service
 public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private ImageUpload imageUpload;
 
     @Override
     public List<ProductDto> findAll() {
@@ -38,8 +44,30 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product save(ProductDto product) {
-        return null;
+    public Product save(MultipartFile imageProduct, ProductDto productDto) {
+        try {
+            Product product = new Product();
+            if(imageProduct == null){
+                product.setImage(null);
+            }else {
+               if ( imageUpload.uploadImage(imageProduct)){
+                   System.out.println("Upload Successfully");
+               }
+                product.setImage(Base64.getEncoder().encodeToString(imageProduct.getBytes()));
+            }
+            product.setName(productDto.getName());
+            product.setDescription(productDto.getDescription());
+            product.setCategory(productDto.getCategory());
+            product.setCostPrice(productDto.getCostPrice());
+            product.setCurrentQuantity(productDto.getCurrentQuantity());
+            product.set_activated(true);
+            product.set_deleted(false);
+            return productRepository.save(product);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
     }
 
     @Override
