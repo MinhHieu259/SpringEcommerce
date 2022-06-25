@@ -25,10 +25,10 @@
                    <div th:if="${size == 0}">
                        <p>No Product in Shop</p>
                    </div>
-                   <div th:if="${success}">
+                   <div th:if="${success}" class="text-center alert alert-success">
                         <p th:text="${success}"></p>
                    </div>
-                   <div th:if="${error}">
+                   <div th:if="${error}" class="text-center alert alert-danger">
                        <p th:text="${error}"></p>
                    </div>
                    <a type="button" th:href="@{/add-product}" class="btn btn-primary">Add new Product</a>
@@ -50,8 +50,8 @@
                            <td th:text="${product.category.name}">Mark</td>
                            <td th:text="${product.costPrice}"></td>
                            <td th:text="${product.currentQuantity}"></td>
-                           <td><img />></td>
-                           <td></td>
+                           <td><img th:src="*{'data:image/jpeg;base64,' + {product.image}}" style="height: 40px; height: 40px" /></td>
+                           <td><a th:href="@{/update-product/{id} (id = ${product.id})}" class="btn btn-primary">Update</a></td>
                            <td></td>
                        </tr>
 
