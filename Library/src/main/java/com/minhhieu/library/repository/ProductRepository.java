@@ -13,5 +13,5 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     Page<Product> pageProducts(Pageable pageable);
 
     @Query("select p from Product p where p.description like %?1% or p.name like %?1%")
-    Page<Product> searchProducts(String keyword);
+    Page<Product> searchProducts(String keyword, Pageable pageable);
 }

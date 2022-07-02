@@ -41,13 +41,31 @@ public class ProductController {
         if(principal == null){
             return "redirect:/login";
         }
-        Page<Product>  products = productService.pageProducts(pageNo);
+        Page<Product> products = productService.pageProducts(pageNo);
         model.addAttribute("title", "Manage Product");
         model.addAttribute("size", products.getSize());
         model.addAttribute("totalPages", products.getTotalPages());
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("products", products);
         return "products";
+    }
+
+    @GetMapping("/search-result/{pageNo}")
+    public String searchProducts(@PathVariable("pageNo") int pageNo,
+                                 @RequestParam("keyword") String keyword,
+                                 Model model,
+                                 Principal principal){
+        if(principal == null){
+            return "redirect:/login";
+        }
+        Page<Product> products = productService.searchProducts(pageNo, keyword);
+        model.addAttribute("title", "Search Peoduct");
+        model.addAttribute("products", products);
+        model.addAttribute("size", products.getSize());
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", products.getTotalPages());
+        model.addAttribute("keyword", keyword);
+        return "result-products";
     }
 
     @GetMapping("/add-product")
@@ -112,7 +130,7 @@ public class ProductController {
             e.printStackTrace();
             attributes.addFlashAttribute("error", "Failed to Enabled");
         }
-        return "redirect:/products";
+        return "redirect:/products/0";
     }
 
     @RequestMapping(value = "/delete-product/{id}", method = {RequestMethod.PUT, RequestMethod.GET})
@@ -124,6 +142,6 @@ public class ProductController {
             e.printStackTrace();
             attributes.addFlashAttribute("error", "Failed to Deleted");
         }
-        return "redirect:/products";
+        return "redirect:/products/0";
     }
 }
