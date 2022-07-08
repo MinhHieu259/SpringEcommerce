@@ -29,6 +29,7 @@ public class ProductController {
         Long categoryId = product.getCategory().getId();
         List<Product> products = productService.getRelatedProduct(categoryId);
         model.addAttribute("product", product);
+        model.addAttribute("products", products);
         return "product-detail";
     }
 }

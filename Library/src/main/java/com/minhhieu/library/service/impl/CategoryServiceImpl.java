@@ -1,5 +1,6 @@
 package com.minhhieu.library.service.impl;
 
+import com.minhhieu.library.dto.CategoryDto;
 import com.minhhieu.library.model.Category;
 import com.minhhieu.library.repository.CategoryRepository;
 import com.minhhieu.library.service.CategoryService;
@@ -71,5 +72,10 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<Category> findAllByActivated() {
         return repo.findAllByActivated();
+    }
+
+    @Override
+    public List<CategoryDto> getCategoryAndProduct() {
+        return repo.getCategoryAndProduct();
     }
 }

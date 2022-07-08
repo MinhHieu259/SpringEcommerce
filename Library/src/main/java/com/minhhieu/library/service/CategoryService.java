@@ -1,5 +1,6 @@
 package com.minhhieu.library.service;
 
+import com.minhhieu.library.dto.CategoryDto;
 import com.minhhieu.library.model.Category;
 
 import java.util.List;
@@ -13,4 +14,7 @@ public interface CategoryService {
     void deleteById(Long id);
     void enabledById(Long id);
     List<Category> findAllByActivated();
+
+    /*Customer*/
+    List<CategoryDto> getCategoryAndProduct();
 }
