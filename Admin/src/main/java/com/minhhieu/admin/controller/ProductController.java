@@ -59,7 +59,7 @@ public class ProductController {
             return "redirect:/login";
         }
         Page<ProductDto> products = productService.searchProducts(pageNo, keyword);
-        model.addAttribute("title", "Search Peoduct");
+        model.addAttribute("title", "Search Product");
         model.addAttribute("products", products);
         model.addAttribute("size", products.getSize());
         model.addAttribute("currentPage", pageNo);
@@ -90,7 +90,7 @@ public class ProductController {
         e.printStackTrace();
         attributes.addFlashAttribute("error", "Fail to add product");
     }
-        return "redirect:/products";
+        return "redirect:/products/0";
     }
 
     @GetMapping("/update-product/{id}")
