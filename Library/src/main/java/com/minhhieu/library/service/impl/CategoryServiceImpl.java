@@ -4,6 +4,7 @@ import com.minhhieu.library.dto.CategoryDto;
 import com.minhhieu.library.model.Category;
 import com.minhhieu.library.repository.CategoryRepository;
 import com.minhhieu.library.service.CategoryService;
+import com.minhhieu.library.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -78,4 +79,5 @@ public class CategoryServiceImpl implements CategoryService {
     public List<CategoryDto> getCategoryAndProduct() {
         return repo.getCategoryAndProduct();
     }
+
 }
